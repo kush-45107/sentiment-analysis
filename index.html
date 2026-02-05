@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sentiment Analysis</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2><i class="fa-solid fa-face-smile"></i> About Project</h2>
+    <p>This Sentiment Analysis app classifies text as Positive, Negative, or Neutral. 
+    It is built using Python, Flask and a trained ML model for NLP-based predictions.</p>
+    <hr>
+    
+    <h3 class="built-title"><i class="fa-solid fa-screwdriver-wrench"></i> Built with:</h3>
+    <ul>
+      <li>🐍 Python</li>
+      <li>⚡ Flask</li>
+      <li>📊 TF-IDF Vectorizer</li>
+      <li>🤖 ML model - Linear SVC</li>
+      <li>🎨 HTML & CSS</li>
+    </ul>
+    
+    <div class="footer">
+      <hr>
+      <p>👨‍💻 Developed by: <strong>Kushagra Srivastawa</strong></p>
+    </div>
+  </div>
+
+  <!-- Main Section -->
+  <div class="main-content">
+    <div class="container">
+      <h2>Sentiment Analysis</h2>
+      <form method="post">
+        <input type="text" name="text" placeholder="Enter a sentence..." required>
+        <button type="submit">Predict</button>
+      </form>
+
+      {% if prediction %}
+      <div class="result-box 
+        {% if 'Positive' in prediction %}result-positive
+        {% elif 'Neutral' in prediction %}result-neutral
+        {% else %}result-negative{% endif %}">
+        {{ prediction }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
